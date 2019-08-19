@@ -1,0 +1,22 @@
+{
+  "name": "file-upload-component",
+  "version": "0.1.2",
+  "description": "Web component based file picker for web, with customizable upload backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Burak Tamturk <buraktamturk@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buraktamturk/file-upload-component.git"
+  },
+  "dependencies": {
+    "file-dialog": "0.0.7",
+    "prettysize": "^2.0.0"
+  },
+  "peerDependencies": {
+    "upload-controller-factory": "^0.1.2"
+  }
+}
