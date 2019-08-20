@@ -1,6 +1,6 @@
 {
   "name": "file-upload-component",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Web component based file picker for web, with customizable upload backend.",
   "main": "index.js",
   "scripts": {

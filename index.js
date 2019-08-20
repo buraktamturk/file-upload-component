@@ -87,10 +87,15 @@
 
               this.uploadBtn.appendChild(icon);
               if(this.hasAttribute("desc")) {
-                this.uploadBtn.appendChild(document.createTextNode(" " + this.getAttribute("desc")));
+                this.uploadBtn.appendChild(document.createTextNode(" "));
+                this.descNode = document.createTextNode(this.getAttribute("desc"));
+
+                this.uploadBtn.appendChild(this.descNode);
               }
 
               this.area.appendChild(this.uploadBtn);
+            } else if(this.descNode) {
+              this.descNode.textContent = this.getAttribute("desc");
             }
           } else if(this.$controller.$state == 2) {
             if(this.hiddenInput) {
@@ -101,6 +106,7 @@
             if(this.uploadBtn) {
               this.area.removeChild(this.uploadBtn);
               this.uploadBtn = null;
+              this.descNode = null;
             }
 
             if(this.finalArea) {
@@ -163,6 +169,7 @@
             if(this.uploadBtn) {
               this.area.removeChild(this.uploadBtn);
               this.uploadBtn = null;
+              this.descNode = null;
             }
 
             if(this.middleArea) {
@@ -253,7 +260,7 @@
         }
 
         static get observedAttributes() {
-          return ['value', 'src', 'name', 'filename', 'length'];
+          return ['value', 'src', 'name', 'filename', 'size', 'desc'];
         }
     
         attributeChangedCallback(name, oldValue, newValue) {
@@ -261,13 +268,25 @@
             switch(name) {
               case "value":
               case "src":
-              case "length":
+              case "size":
               case "filename":
         //        this.updateData();
               break;
               case "name":
                 if(this.hiddenInput) {
                   this.hiddenInput.name = newValue;
+                }
+              break;
+              case "desc":
+                if(this.uploadBtn) {
+                  if(this.descNode) {
+                    this.descNode.textContent = newValue;
+                  } else if(this.hasAttribute("desc")) {
+                    this.uploadBtn.appendChild(document.createTextNode(" "));
+                    this.descNode = document.createTextNode(this.getAttribute("desc"));
+    
+                    this.uploadBtn.appendChild(this.descNode);
+                  }
                 }
               break;
             }
